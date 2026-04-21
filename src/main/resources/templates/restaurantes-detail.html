@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>restaurantes-id</title>
+</head>
+<body>
+<h1 th:text="'Restaurante ' + ${restaurante.id}"></h1>
+<p th:text="'Nombre: ' + ${restaurante.name}"></p>
+<p th:text="'Precio promedio: ' + ${restaurante.averagePrice != null ? restaurante.averagePrice +
+'$':'Sin precio ,Gratis'}">
+</p>
+<p th:if ="${restaurante.active}" >Estado :<span style="color: green">Abierto</span></p>
+<p th:unless ="${restaurante.active}" >Estado :<span style="color: red">Cerrado</span></p>
+
+<p th:switch="${restaurante.foodType}">
+    <span th:case="${restaurante.foodType.JAPANESE}">Tipo de comida: Japonesa</span>
+    <span th:case="${restaurante.foodType.SPANISH}">Tipo de comida: Española</span>
+    <span th:case="${restaurante.foodType.MEXICAN}">Tipo de comida: Mexicana</span>
+    <span th:case="*">No hay comida</span>
+</p>
+</body>
+</html>

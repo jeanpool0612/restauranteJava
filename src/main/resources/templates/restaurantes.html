@@ -11,6 +11,10 @@
     <li th:each = "restaurant : ${restaurantes}">
         <span th:text = "${restaurant.name}"></span>
         <span th:text = "${restaurant.averagePrice}"></span>
+        <!-- agregar enlace para ver restaurante -->
+        <a th:href="@{/restaurantes/{id}(id=${restaurant.id})}">
+                Ver restaurante
+        </a>
 
     </li>
 </ol>

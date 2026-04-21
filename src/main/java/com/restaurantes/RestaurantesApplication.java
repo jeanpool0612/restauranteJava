@@ -1,6 +1,7 @@
 package com.restaurantes;
 
 import com.restaurantes.model.Restaurant;
+import com.restaurantes.model.enums.FoodType;
 import com.restaurantes.repository.RestaurantRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,17 +15,20 @@ public class RestaurantesApplication {
         RestaurantRepository restaurantRepository = context.getBean(RestaurantRepository.class);
         restaurantRepository.save(Restaurant.builder()
                 .name("Paquito Restaurante")
-                .averagePrice(20.0)
-                .active(true)
+                .averagePrice(null)
+                .active(false)
+                .foodType(FoodType.SPANISH)
                 .build());
         restaurantRepository.save(Restaurant.builder()
                 .name("El Buen Sabor")
                 .averagePrice(15.0)
+                .foodType(FoodType.MEXICAN)
                 .active(true)
                 .build());
         restaurantRepository.save(Restaurant.builder()
                 .name("La Casa del Sabor")
                 .averagePrice(25.0)
+                .foodType(FoodType.JAPANESE)
                 .active(true)
                 .build());
     }

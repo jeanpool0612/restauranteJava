@@ -19,25 +19,22 @@ public class RestauranteController {
 
 private RestaurantRepository restaurantRepository;
 //private DishRepository dishRepository;
+    private DishRepository dishRepository;
 //
 //    public RestauranteController(RestaurantRepository restaurantRepository,DishRepository dishRepository) {
 //        this.restaurantRepository = restaurantRepository;
 //        this.dishRepository = dishRepository;
 //    }
 
-    @GetMapping("/restaurantes")
+
+            //PATRON MVC
+
+    @GetMapping("/restaurantes") //controlador
     public String restaurantes(Model model) {
-
-
+        //MODEL donde se guardan los datos
         model.addAttribute("mensaje", "Todos Los Restaurantes");
-
-//        Restaurant restaurant = new Restaurant();
-//        restaurant.setName("Paquito Restaurante");
-//        restaurant.setActive(true);
-//        restaurantRepository.save(restaurant);
-
         model.addAttribute("restaurantes", restaurantRepository.findAll());
 
-        return "restaurantes";}
+        return "restaurantes";} //vista HTML
 
 }

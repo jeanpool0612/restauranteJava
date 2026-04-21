@@ -14,6 +14,17 @@ public class RestaurantesApplication {
         RestaurantRepository restaurantRepository = context.getBean(RestaurantRepository.class);
         restaurantRepository.save(Restaurant.builder()
                 .name("Paquito Restaurante")
+                .averagePrice(20.0)
+                .active(true)
+                .build());
+        restaurantRepository.save(Restaurant.builder()
+                .name("El Buen Sabor")
+                .averagePrice(15.0)
+                .active(true)
+                .build());
+        restaurantRepository.save(Restaurant.builder()
+                .name("La Casa del Sabor")
+                .averagePrice(25.0)
                 .active(true)
                 .build());
     }

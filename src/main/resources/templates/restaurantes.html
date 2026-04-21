@@ -10,6 +10,7 @@
 <ol>
     <li th:each = "restaurant : ${restaurantes}">
         <span th:text = "${restaurant.name}"></span>
+        <span th:text = "${restaurant.averagePrice}"></span>
 
     </li>
 </ol>

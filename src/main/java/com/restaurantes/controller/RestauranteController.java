@@ -1,6 +1,7 @@
 package com.restaurantes.controller;
 
 
+import com.restaurantes.model.Dish;
 import com.restaurantes.model.Restaurant;
 import com.restaurantes.repository.DishRepository;
 import com.restaurantes.repository.RestaurantRepository;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -19,8 +21,7 @@ import java.util.Optional;
 public class RestauranteController {
 
 private RestaurantRepository restaurantRepository;
-//private DishRepository dishRepository;
-    private DishRepository dishRepository;
+private DishRepository dishRepository;
 //
 //    public RestauranteController(RestaurantRepository restaurantRepository,DishRepository dishRepository) {
 //        this.restaurantRepository = restaurantRepository;
@@ -45,13 +46,21 @@ private RestaurantRepository restaurantRepository;
 
         Optional<Restaurant> restaurante = restaurantRepository.findById(id);
 
+
         if (restaurante.isPresent()){
             model.addAttribute("restaurante", restaurante.get());
+            //sacar los platos  del restaurante
+            List<Dish> platos = dishRepository.findByRestaurant_Id(id);
+            model.addAttribute("dishes", dishRepository.findByRestaurant_Id(id));
+
             return "restaurantes-detail";
         }
         else {
             return "restaurantes";
         }
+
+
+
 
     }
 

@@ -1,6 +1,7 @@
 package com.restaurantes.model;
 
 
+import com.restaurantes.model.enums.DishType;
 import com.restaurantes.model.enums.FoodType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -40,6 +41,7 @@ public class Restaurant {
     // Tipo comida: SPANISH, JAPANESE, MEXICAN
     @Enumerated(EnumType.STRING)
     private FoodType foodType;
+
 
     public Restaurant(String name, Double averagePrice) {
         this.name = name;

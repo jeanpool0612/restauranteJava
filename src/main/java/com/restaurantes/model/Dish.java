@@ -30,6 +30,9 @@ public class Dish {
     // https://img.hosting.com/pepe.jpg
     private String imageUrl;
 
+    //tipo
+    private String type;
+
     @Enumerated(EnumType.STRING)
     private FoodType foodType;
 

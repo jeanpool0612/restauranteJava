@@ -13,11 +13,63 @@
 <p th:if ="${restaurante.active}" >Estado :<span style="color: green">Abierto</span></p>
 <p th:unless ="${restaurante.active}" >Estado :<span style="color: red">Cerrado</span></p>
 
+<p th:text="${restaurante.foodType != null ? restaurante.foodType.label : 'Sin definir.'}"></p>
+
+<!-- Opcional: switch para el enum, más flexible para poder añadirle etiquetas html para cada opción -->
 <p th:switch="${restaurante.foodType}">
-    <span th:case="${restaurante.foodType.JAPANESE}">Tipo de comida: Japonesa</span>
-    <span th:case="${restaurante.foodType.SPANISH}">Tipo de comida: Española</span>
-    <span th:case="${restaurante.foodType.MEXICAN}">Tipo de comida: Mexicana</span>
-    <span th:case="*">No hay comida</span>
+    <span th:case="${ T(com.restaurantes.model.enums.FoodType).SPANISH }">🐂 Cocina <b>española</b></span>
+    <span th:case="${ T(com.restaurantes.model.enums.FoodType).MEXICAN }">🌶️ Cocina <b>mexicana wey</b></span>
+    <span th:case="${ T(com.restaurantes.model.enums.FoodType).JAPANESE }">🍙🍤 Cocina <b>japonesa</b></span>
+    <span th:case="*">Sin definir, de todo un poco.</span>
 </p>
+<!-- carta de platos -->
+<h2>Carta de platos</h2>
+
+<p th:if="${dishes.isEmpty()}">No hay platos disponibles.</p>
+
+<table th:unless="${dishes.isEmpty()}" >
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre del plato</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Estado</th>
+            <th>Imagen</th>
+            <th>Tipo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dish : ${dishes}">
+        <td th:text="${dish.id}"></td>
+        <td th:text="${dish.name}"></td>
+        <td th:text="${dish.description}"></td>
+        <td th:text="${dish.price != null ? dish.price + 'Euros' : 'Gratis'}"></td>
+        <td th:text="${dish.active ? 'Disponible' : 'No disponible tempralmente'}"></td>
+        <td><img th:src="${dish.imageUrl !=null ? dish.imageUrl : 'https://dummyjson.com/image/100'}"
+                 alt="Imagen del plato"
+                 width="100"/>
+        </td>
+        <td th:text="${dish.type}"></td>
+
+    </tr>
+    </tbody>
+
+</table>
+
+
+
+
 </body>
 </html>
+
+
+
+<!--<p th:text="${restaurante.foodType != null ? restaurante.foodType.label : 'Sin definir .'}"></p>-->
+
+<!--<p th:switch="${restaurante.foodType}">-->
+<!--    <span th:case="${restaurante.foodType.JAPANESE}">Tipo de comida: <strong> 🍜🍜🍜 Japonesa</strong></span>-->
+<!--    <span th:case="${restaurante.foodType.SPANISH}">Tipo de comida: <strong>🐂🐂Española</strong></span>-->
+<!--    <span th:case="${restaurante.foodType.MEXICAN}">Tipo de comida: <strong>🌮🌮🌮Mexicana</strong></span>-->
+<!--    <span th:case="*">No hay comida</span>-->
